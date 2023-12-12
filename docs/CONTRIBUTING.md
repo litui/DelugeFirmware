@@ -15,7 +15,7 @@ Even if you are not a software developer you can contribute immensely by informi
 * Where the bug exists in build scripts, e2, or other development, building, and debugging processes, please provide excerpts of the relevant logs if you suspect they might be helpful.
 * Bugs in related projects should be submitted to the appropriate issue tracker:
     * DelugeProbe: [litui/delugeprobe](https://github.com/litui/delugeprobe).
-    * DBT-Toolchain: [litui/dbt-toolchain](https://github.com/litui/dbt-toolchain).
+    * DBT-Toolchain: [SynthstromAudible/dbt-toolchain](https://github.com/SynthstromAudible/dbt-toolchain).
 
 
 # Ideas, feature requests, suggestions and discussions
