@@ -157,8 +157,52 @@ int main(void) {
 
 	deluge_main();
 
+	// If we ended up here, let's act like we're on the GR-LYCHEE and cycle some LEDs
+
+#define GREEN_PORT 2
+#define GREEN_PIN 4
+#define YELLOW_PORT 2
+#define YELLOW_PIN 5
+#define ORANGE_PORT 7
+#define ORANGE_PIN 0
+#define RED_PORT 2
+#define RED_PIN 2
+
+	setPinAsOutput(GREEN_PORT, GREEN_PIN);
+	setPinAsOutput(YELLOW_PORT, YELLOW_PIN);
+	setPinAsOutput(ORANGE_PORT, ORANGE_PIN);
+	setPinAsOutput(RED_PORT, RED_PIN);
+
+	setOutputState(GREEN_PORT, GREEN_PIN, false);
+	setOutputState(YELLOW_PORT, YELLOW_PIN, false);
+	setOutputState(ORANGE_PORT, ORANGE_PIN, false);
+	setOutputState(RED_PORT, RED_PIN, false);
+
 	while (1) {
-		;
+		for (uint16_t i = 0; i < UINT16_MAX; i++) {
+			setOutputState(GREEN_PORT, GREEN_PIN, true);
+		};
+		for (uint16_t i = 0; i < UINT16_MAX; i++) {
+			setOutputState(GREEN_PORT, GREEN_PIN, false);
+		}
+		for (uint16_t i = 0; i < UINT16_MAX; i++) {
+			setOutputState(YELLOW_PORT, YELLOW_PIN, true);
+		}
+		for (uint16_t i = 0; i < UINT16_MAX; i++) {
+			setOutputState(YELLOW_PORT, YELLOW_PIN, false);
+		}
+		for (uint16_t i = 0; i < UINT16_MAX; i++) {
+			setOutputState(ORANGE_PORT, ORANGE_PIN, true);
+		}
+		for (uint16_t i = 0; i < UINT16_MAX; i++) {
+			setOutputState(ORANGE_PORT, ORANGE_PIN, false);
+		}
+		for (uint16_t i = 0; i < UINT16_MAX; i++) {
+			setOutputState(RED_PORT, RED_PIN, true);
+		}
+		for (uint16_t i = 0; i < UINT16_MAX; i++) {
+			setOutputState(RED_PORT, RED_PIN, false);
+		}
 	}
 }
 
