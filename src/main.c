@@ -122,40 +122,39 @@ int main(void) {
 
 	// Uart setup and pin mux ------------------------------------------------------------------------------------------
 
-	// Uart for MIDI
-	uartInit(UART_ITEM_MIDI, 31250);
+	// // Uart for MIDI
+	// uartInit(UART_ITEM_MIDI, 31250);
 
-	setPinMux(6, 15, 5); // TX
-	setPinMux(6, 14, 5); // RX
+	// setPinMux(6, 15, 5); // TX
+	// setPinMux(6, 14, 5); // RX
 
-	// Uart for PIC / display
-	uartInit(UART_ITEM_PIC, UART_INITIAL_SPEED_PIC_PADS_HZ);
+	// // Uart for PIC / display
+	// uartInit(UART_ITEM_PIC, UART_INITIAL_SPEED_PIC_PADS_HZ);
 
-	setPinMux(3, 15, 5); // TX
-	setPinMux(1, 9, 3);  // RX
+	// setPinMux(3, 15, 5); // TX
+	// setPinMux(1, 9, 3);  // RX
 
-	initUartDMA();
+	// initUartDMA();
 
-	// Pin mux for SD
-	setPinMux(7, 0, 3); // CD
-	setPinMux(7, 1, 3); // WP
-	setPinMux(7, 2, 3); // D1
-	setPinMux(7, 3, 3); // D0
-	setPinMux(7, 4, 3); // CLK
-	setPinMux(7, 5, 3); // CMD
-	setPinMux(7, 6, 3); // D3
-	setPinMux(7, 7, 3); // D2
+	// // Pin mux for SD
+	// setPinMux(7, 0, 3); // CD
+	// setPinMux(7, 1, 3); // WP
+	// setPinMux(7, 2, 3); // D1
+	// setPinMux(7, 3, 3); // D0
+	// setPinMux(7, 4, 3); // CLK
+	// setPinMux(7, 5, 3); // CMD
+	// setPinMux(7, 6, 3); // D3
+	// setPinMux(7, 7, 3); // D2
 
-	/* Configure IRQs detections on falling edge. Due to the presence of a transistor, we want to read falling edges on
-	 * the trigger clock rather than rising. */
-	INTC.ICR1 = 0b0101010101010101;
+	// /* Configure IRQs detections on falling edge. Due to the presence of a transistor, we want to read falling edges on the trigger clock rather than rising. */
+	// INTC.ICR1 = 0b0101010101010101;
 
-	R_INTC_Disable(IRQ_INTERRUPT_0 + 6);
-	R_INTC_RegistIntFunc(IRQ_INTERRUPT_0 + 6, &int_irq6);
-	R_INTC_SetPriority(IRQ_INTERRUPT_0 + 6, 5);
-	R_INTC_Enable(IRQ_INTERRUPT_0 + 6);
+	// R_INTC_Disable(IRQ_INTERRUPT_0 + 6);
+	// R_INTC_RegistIntFunc(IRQ_INTERRUPT_0 + 6, &int_irq6);
+	// R_INTC_SetPriority(IRQ_INTERRUPT_0 + 6, 5);
+	// R_INTC_Enable(IRQ_INTERRUPT_0 + 6);
 
-	deluge_main();
+	// deluge_main();
 
 	// If we ended up here, let's act like we're on the GR-LYCHEE and cycle some LEDs
 

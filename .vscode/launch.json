@@ -41,6 +41,43 @@
       },
     },
     {
+      "name": "Cortex-Debug (BMD) Load/Run Debug",
+      "preLaunchTask": "Build Debug",
+      "type": "cortex-debug",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "executable": "${workspaceRoot}/build/Debug/deluge.elf",
+      "servertype": "bmp",
+      "BMPGDBSerialPort": "/dev/cu.usbmodem97B728141",
+      "device": "RZ/A1",
+      "interface": "swd",
+      //"runToEntryPoint": "main",
+      "svdFile": "${workspaceRoot}/contrib/rza1.svd",
+      "overrideLaunchCommands": [
+        "mon freq 10000k",
+        "load"
+      ],
+      "overrideRestartCommands": [
+        "mon freq 10000k",
+        "load"
+      ],
+      "overrideResetCommands": [
+        "mon freq 10000k",
+        "load"
+      ],
+      "rttConfig": {
+        "enabled": true,
+        "address": "auto",
+        "decoders": [
+          {
+            "port": 0,
+            "timestamp": true,
+            "type": "console"
+          }
+        ]
+      },
+    },
+    {
       "name": "Cortex-Debug Load/Run RelWithDebInfo",
       "preLaunchTask": "Build RelWithDebInfo",
       "type": "cortex-debug",

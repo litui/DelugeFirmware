@@ -683,12 +683,6 @@ extern "C" int32_t deluge_main(void) {
 		}
 	});
 
-	if (!picFirmwareVersion) {
-		// No PIC firmware version. Either PIC is dead, or we're not on a Deluge.
-		// Back out before we get too far along.
-		return 1;
-	}
-
 	FlashStorage::readSettings();
 
 	runtimeFeatureSettings.init();
