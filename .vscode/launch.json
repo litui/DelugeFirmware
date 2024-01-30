@@ -14,7 +14,7 @@
       "servertype": "jlink",
       "device": "R7S721020",
       "interface": "swd",
-      //"runToEntryPoint": "main",
+      // "runToEntryPoint": "main",
       "svdFile": "${workspaceRoot}/contrib/rza1.svd",
       "overrideLaunchCommands": [
         "monitor reset",
@@ -51,18 +51,30 @@
       "BMPGDBSerialPort": "/dev/cu.usbmodem97B728141",
       "device": "RZ/A1",
       "interface": "swd",
-      //"runToEntryPoint": "main",
+      // "runToEntryPoint": "main",
       "svdFile": "${workspaceRoot}/contrib/rza1.svd",
       "overrideLaunchCommands": [
+        "mon reset",
+        "mon swd",
+        "att 1",
         "mon freq 10000k",
+        "file ${workspaceRoot}/build/Debug/deluge.elf",
         "load"
       ],
       "overrideRestartCommands": [
+        "mon reset",
+        "mon swd",
+        "att 1",
         "mon freq 10000k",
+        "file ${workspaceRoot}/build/Debug/deluge.elf",
         "load"
       ],
       "overrideResetCommands": [
+        "mon reset",
+        "mon swd",
+        "att 1",
         "mon freq 10000k",
+        "file ${workspaceRoot}/build/Debug/deluge.elf",
         "load"
       ],
       "rttConfig": {

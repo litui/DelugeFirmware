@@ -88,37 +88,37 @@ int main(void) {
 
 	mtuEnableAccess();
 
-	// Set up MIDI / gate output timer
-	disableTimer(TIMER_MIDI_GATE_OUTPUT);
-	*TCNT[TIMER_MIDI_GATE_OUTPUT] = 0u;
-	timerClearCompareMatchTGRA(TIMER_MIDI_GATE_OUTPUT);
-	timerEnableInterruptsTGRA(TIMER_MIDI_GATE_OUTPUT);
-	timerControlSetup(TIMER_MIDI_GATE_OUTPUT, 1, 64);
+	// // Set up MIDI / gate output timer
+	// disableTimer(TIMER_MIDI_GATE_OUTPUT);
+	// *TCNT[TIMER_MIDI_GATE_OUTPUT] = 0u;
+	// timerClearCompareMatchTGRA(TIMER_MIDI_GATE_OUTPUT);
+	// timerEnableInterruptsTGRA(TIMER_MIDI_GATE_OUTPUT);
+	// timerControlSetup(TIMER_MIDI_GATE_OUTPUT, 1, 64);
 
-	/* The setup process the interrupt IntTgfa function.*/
-	R_INTC_RegistIntFunc(INTC_ID_TGIA[TIMER_MIDI_GATE_OUTPUT], &midiAndGateOutputTimerInterrupt);
-	R_INTC_SetPriority(INTC_ID_TGIA[TIMER_MIDI_GATE_OUTPUT], 5);
-	// Original comment regarding above priority: "Must be greater than 9, so less prioritized than USB interrupt, so
-	// that can still happen while this happening. But must be lower number / more prioritized than MIDI UART TX DMA
-	// interrupt! Or else random crash occasionally." But, I've now undone the change in "USB sending as host now done
-	// in ISR too!" commit, which set it to 11. That was causing the SD / UART lockups (checked and observed again
-	// around V4.0.0-beta2), and was possibly only actually done in the first place to help with my hack fix for what I
-	// thought was that USB "hardware bug", which I ended up resolving later anyway.
+	// /* The setup process the interrupt IntTgfa function.*/
+	// R_INTC_RegistIntFunc(INTC_ID_TGIA[TIMER_MIDI_GATE_OUTPUT], &midiAndGateOutputTimerInterrupt);
+	// R_INTC_SetPriority(INTC_ID_TGIA[TIMER_MIDI_GATE_OUTPUT], 5);
+	// // Original comment regarding above priority: "Must be greater than 9, so less prioritized than USB interrupt, so
+	// // that can still happen while this happening. But must be lower number / more prioritized than MIDI UART TX DMA
+	// // interrupt! Or else random crash occasionally." But, I've now undone the change in "USB sending as host now done
+	// // in ISR too!" commit, which set it to 11. That was causing the SD / UART lockups (checked and observed again
+	// // around V4.0.0-beta2), and was possibly only actually done in the first place to help with my hack fix for what I
+	// // thought was that USB "hardware bug", which I ended up resolving later anyway.
 
-	// Set up slow system timer - 33 ticks per millisecond (30.30303 microseconds per tick) on A1
-	disableTimer(TIMER_SYSTEM_SLOW);
-	timerControlSetup(TIMER_SYSTEM_SLOW, 0, 1024);
-	enableTimer(TIMER_SYSTEM_SLOW);
+	// // Set up slow system timer - 33 ticks per millisecond (30.30303 microseconds per tick) on A1
+	// disableTimer(TIMER_SYSTEM_SLOW);
+	// timerControlSetup(TIMER_SYSTEM_SLOW, 0, 1024);
+	// enableTimer(TIMER_SYSTEM_SLOW);
 
-	// Set up fast system timer - 528 ticks per millisecond (1.893939 microseconds per tick) on A1
-	disableTimer(TIMER_SYSTEM_FAST);
-	timerControlSetup(TIMER_SYSTEM_FAST, 0, 64);
-	enableTimer(TIMER_SYSTEM_FAST);
+	// // Set up fast system timer - 528 ticks per millisecond (1.893939 microseconds per tick) on A1
+	// disableTimer(TIMER_SYSTEM_FAST);
+	// timerControlSetup(TIMER_SYSTEM_FAST, 0, 64);
+	// enableTimer(TIMER_SYSTEM_FAST);
 
-	// Set up super-fast system timer - 33.792 ticks per microsecond (29.5928 nanoseconds per tick) on A1
-	disableTimer(TIMER_SYSTEM_SUPERFAST);
-	timerControlSetup(TIMER_SYSTEM_SUPERFAST, 0, 1);
-	enableTimer(TIMER_SYSTEM_SUPERFAST);
+	// // Set up super-fast system timer - 33.792 ticks per microsecond (29.5928 nanoseconds per tick) on A1
+	// disableTimer(TIMER_SYSTEM_SUPERFAST);
+	// timerControlSetup(TIMER_SYSTEM_SUPERFAST, 0, 1);
+	// enableTimer(TIMER_SYSTEM_SUPERFAST);
 
 	// Uart setup and pin mux ------------------------------------------------------------------------------------------
 
